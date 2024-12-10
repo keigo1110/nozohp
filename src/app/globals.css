@@ -1,0 +1,242 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+}
+
+@layer components {
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+}
+
+@layer utilities {
+  .bg-shoji {
+    background-color: #f4f0e6;
+    background-image: linear-gradient(#d9d4c5 1px, transparent 1px),
+      linear-gradient(to right, #d9d4c5 1px, #f4f0e6 1px);
+    background-size: 20px 20px;
+  }
+
+  /* 蜃気楼エフェクト */
+  .mirage-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .mirage-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: transparent;
+  }
+
+  /* アニメーションの種類を増やす */
+  .mirage-1 {
+    animation: mirage1 20s ease-in-out infinite;
+    width: 30%;
+    left: 10%;
+  }
+  .mirage-2 {
+    animation: mirage2 25s ease-in-out infinite 5s;
+    width: 40%;
+    left: 35%;
+  }
+  .mirage-3 {
+    animation: mirage3 30s ease-in-out infinite 10s;
+    width: 35%;
+    right: 5%;
+  }
+
+  /* 熱気エフェクト */
+  .heat-haze-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 99;
+    overflow: hidden;
+  }
+
+  .heat-wave {
+    position: absolute;
+    width: 100%;
+    height: 500%;
+    background: radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      rgba(0, 0, 0, 0.04) 60%,
+      transparent 100%
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    filter: blur(15px);
+    mix-blend-mode: color-dodge;
+    opacity: 0.98;
+    transform-origin: center;
+  }
+
+  .heat-wave-1 {
+    animation: heatRise1 25s ease-in-out infinite;
+    left: -20%;
+    width: 140%;
+    transform: scale(3);
+  }
+  .heat-wave-2 {
+    animation: heatRise2 30s ease-in-out infinite 8s;
+    left: -10%;
+    width: 120%;
+    transform: scale(3.5);
+  }
+  .heat-wave-3 {
+    animation: heatRise3 35s ease-in-out infinite 15s;
+    left: -30%;
+    width: 160%;
+    transform: scale(3.2);
+  }
+
+  /* シュリーレン効果 */
+  .schlieren-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 99;
+    overflow: hidden;
+  }
+
+  .schlieren-layer {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    left: -25%;
+    top: -25%;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  .schlieren-1 {
+    animation: schlieren1 12s ease-in-out infinite;
+    animation-delay: calc(var(--random-delay-1) * 1s);
+  }
+
+  .schlieren-2 {
+    animation: schlieren2 15s ease-in-out infinite;
+    animation-delay: calc(var(--random-delay-2) * 1s);
+  }
+
+  .schlieren-3 {
+    animation: schlieren3 18s ease-in-out infinite;
+    animation-delay: calc(var(--random-delay-3) * 1s);
+  }
+
+  /* 和紙テクスチャ */
+  .bg-washi {
+    background-color: #f7f6f2;
+    background-image:
+      radial-gradient(#e6e4dd 1px, transparent 1px),
+      radial-gradient(#e6e4dd 1px, transparent 1px);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+  }
+
+  /* 市松模様 */
+  .bg-ichimatsu {
+    background-color: #f4f0e6;
+    background-image:
+      linear-gradient(45deg, #e8e4d9 25%, transparent 25%),
+      linear-gradient(-45deg, #e8e4d9 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e8e4d9 75%),
+      linear-gradient(-45deg, transparent 75%, #e8e4d9 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+
+  /* 青海波 */
+  .bg-seigaiha {
+    background-color: #f4f0e6;
+    background-image: radial-gradient(circle at 100% 150%, #f4f0e6 24%, #e8e4d9 25%, #e8e4d9 28%, #f4f0e6 29%, #f4f0e6 36%, #e8e4d9 36%, #e8e4d9 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0 150%, #f4f0e6 24%, #e8e4d9 25%, #e8e4d9 28%, #f4f0e6 29%, #f4f0e6 36%, #e8e4d9 36%, #e8e4d9 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50% 100%, #e8e4d9 10%, #f4f0e6 11%, #f4f0e6 23%, #e8e4d9 24%, #e8e4d9 30%, #f4f0e6 31%, #f4f0e6 43%, #e8e4d9 44%, #e8e4d9 50%, #f4f0e6 51%, #f4f0e6 63%, #e8e4d9 64%, #e8e4d9 71%, transparent 71%, transparent);
+    background-size: 50px 25px;
+    background-position: 0 0, 25px 0, 25px -25px, 0px -25px;
+  }
+
+  /* 装飾ライン */
+  .border-japanese {
+    border-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 L0,0 Z M10,10 L90,10 L90,90 L10,90 L10,10 Z' fill='%23786F66'/%3E%3C/svg%3E") 30;
+    border-width: 4px;
+    border-style: solid;
+  }
+
+  /* 和風シャドウ */
+  .shadow-japanese {
+    box-shadow: 4px 4px 0 rgba(120, 111, 102, 0.1),
+                8px 8px 0 rgba(120, 111, 102, 0.05);
+  }
+
+  /* 和風ボタン */
+  .btn-japanese {
+    background-color: #786F66;
+    color: #f4f0e6;
+    padding: 0.5rem 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .btn-japanese::before,
+  .btn-japanese::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #786F66;
+    transition: all 0.3s ease;
+  }
+
+  .btn-japanese::before {
+    top: -4px;
+    left: -4px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .btn-japanese::after {
+    bottom: -4px;
+    right: -4px;
+    border-left: 0;
+    border-top: 0;
+  }
+
+  .btn-japanese:hover {
+    background-color: #f4f0e6;
+    color: #786F66;
+  }
+
+  .btn-japanese:hover::before,
+  .btn-japanese:hover::after {
+    width: 20px;
+    height: 20px;
+  }
+}
