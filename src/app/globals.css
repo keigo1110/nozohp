@@ -5,6 +5,22 @@
 @layer base {
   body {
     font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f4f0e6;
+  }
+
+  /* スクロールバーカスタマイズ */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f4f0e6;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #786F66;
+    border: 3px solid #f4f0e6;
+    border-radius: 6px;
   }
 }
 
@@ -12,128 +28,129 @@
   .writing-vertical {
     writing-mode: vertical-rl;
     text-orientation: upright;
+    line-height: 2;  /* 行間を広げる */
+    letter-spacing: 0.1em;  /* 文字間を微調整 */
+  }
+
+  /* 段落のスペーシング */
+  .writing-vertical p {
+    margin-left: 2rem;  /* 段落間の間隔 */
+    padding-bottom: 1rem;  /* 下部の余白 */
+  }
+
+  /* 最後の段落の余分なマージンを削除 */
+  .writing-vertical p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* コンテナの余白調整 */
+  .text-container {
+    height: fit-content;
+    padding: 2rem 0;
+  }
+
+  /* 和風の影効果 */
+  .shadow-japanese {
+    box-shadow:
+      2px 2px 0 rgba(120, 111, 102, 0.1),
+      4px 4px 0 rgba(120, 111, 102, 0.05);
+  }
+
+  /* 縦書きコンテナの最適化 */
+  .writing-container {
+    @apply relative overflow-hidden;
+    max-height: calc(100vh - 16rem); /* ビューポートの高さから余白を引いた値 */
+  }
+
+  /* レスポンシブパディング */
+  .card-padding {
+    @apply p-6 sm:p-8 md:p-10 lg:p-12;
+  }
+
+  /* カードの基本スタイル */
+  .card-japanese {
+    @apply relative bg-white shadow-md transition-shadow duration-300;
+  }
+
+  /* 和風ボタン改良版 */
+  .btn-japanese {
+    @apply bg-stone-700 text-stone-50 px-8 py-2 relative transition-all duration-300 ease-out;
+  }
+
+  .btn-japanese::before,
+  .btn-japanese::after {
+    content: '';
+    @apply absolute w-4 h-4 border-2 border-stone-700 transition-all duration-300;
+  }
+
+  .btn-japanese::before {
+    @apply -top-1 -left-1 border-r-0 border-b-0;
+  }
+
+  .btn-japanese::after {
+    @apply -bottom-1 -right-1 border-l-0 border-t-0;
+  }
+
+  .btn-japanese:hover {
+    @apply bg-stone-50 text-stone-700 transform -translate-y-0.5;
+  }
+
+  .btn-japanese:hover::before,
+  .btn-japanese:hover::after {
+    @apply w-5 h-5;
   }
 }
 
 @layer utilities {
+  /* 背景テクスチャ */
+  .bg-washi {
+    background-color: #f7f6f2;
+    background-image:
+      radial-gradient(#e6e4dd 1px, transparent 1px),
+      radial-gradient(#e6e4dd 1px, transparent 1px);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+  }
+
   .bg-shoji {
     background-color: #f4f0e6;
-    background-image: linear-gradient(#d9d4c5 1px, transparent 1px),
+    background-image:
+      linear-gradient(#d9d4c5 1px, transparent 1px),
       linear-gradient(to right, #d9d4c5 1px, #f4f0e6 1px);
     background-size: 20px 20px;
   }
 
-  /* 蜃気楼エフェクト */
-  .mirage-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 10;
+  .bg-ichimatsu {
+    background-color: #f4f0e6;
+    background-image:
+      linear-gradient(45deg, #e8e4d9 25%, transparent 25%),
+      linear-gradient(-45deg, #e8e4d9 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e8e4d9 75%),
+      linear-gradient(-45deg, transparent 75%, #e8e4d9 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   }
 
-  .mirage-layer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background: transparent;
+  .bg-seigaiha {
+    background-color: #f4f0e6;
+    background-image:
+      radial-gradient(circle at 100% 150%, #f4f0e6 24%, #e8e4d9 25%, #e8e4d9 28%, #f4f0e6 29%, #f4f0e6 36%, #e8e4d9 36%, #e8e4d9 40%, transparent 40%, transparent),
+      radial-gradient(circle at 0 150%, #f4f0e6 24%, #e8e4d9 25%, #e8e4d9 28%, #f4f0e6 29%, #f4f0e6 36%, #e8e4d9 36%, #e8e4d9 40%, transparent 40%, transparent),
+      radial-gradient(circle at 50% 100%, #e8e4d9 10%, #f4f0e6 11%, #f4f0e6 23%, #e8e4d9 24%, #e8e4d9 30%, #f4f0e6 31%, #f4f0e6 43%, #e8e4d9 44%, #e8e4d9 50%, #f4f0e6 51%, #f4f0e6 63%, #e8e4d9 64%, #e8e4d9 71%, transparent 71%, transparent);
+    background-size: 50px 25px;
+    background-position: 0 0, 25px 0, 25px -25px, 0px -25px;
   }
 
-  /* アニメーションの種類を増やす */
-  .mirage-1 {
-    animation: mirage1 20s ease-in-out infinite;
-    width: 30%;
-    left: 10%;
-  }
-  .mirage-2 {
-    animation: mirage2 25s ease-in-out infinite 5s;
-    width: 40%;
-    left: 35%;
-  }
-  .mirage-3 {
-    animation: mirage3 30s ease-in-out infinite 10s;
-    width: 35%;
-    right: 5%;
-  }
-
-  /* 熱気エフェクト */
-  .heat-haze-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 99;
-    overflow: hidden;
-  }
-
-  .heat-wave {
-    position: absolute;
-    width: 100%;
-    height: 500%;
-    background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      rgba(255, 255, 255, 0.04) 40%,
-      rgba(0, 0, 0, 0.04) 60%,
-      transparent 100%
-    );
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    filter: blur(15px);
-    mix-blend-mode: color-dodge;
-    opacity: 0.98;
-    transform-origin: center;
-  }
-
-  .heat-wave-1 {
-    animation: heatRise1 25s ease-in-out infinite;
-    left: -20%;
-    width: 140%;
-    transform: scale(3);
-  }
-  .heat-wave-2 {
-    animation: heatRise2 30s ease-in-out infinite 8s;
-    left: -10%;
-    width: 120%;
-    transform: scale(3.5);
-  }
-  .heat-wave-3 {
-    animation: heatRise3 35s ease-in-out infinite 15s;
-    left: -30%;
-    width: 160%;
-    transform: scale(3.2);
-  }
-
-  /* シュリーレン効果 */
+  /* シュリーレン効果 - パフォーマンス最適化版 */
   .schlieren-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 99;
-    overflow: hidden;
+    @apply fixed inset-0 pointer-events-none z-50 overflow-hidden;
   }
 
   .schlieren-layer {
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    left: -25%;
-    top: -25%;
-    background: transparent;
+    @apply absolute w-[150%] h-[150%] -left-1/4 -top-1/4 opacity-0;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    transform-origin: center;
-    opacity: 0;
+    will-change: transform, opacity;
   }
 
   .schlieren-1 {
@@ -151,92 +168,101 @@
     animation-delay: calc(var(--random-delay-3) * 1s);
   }
 
-  /* 和紙テクスチャ */
-  .bg-washi {
-    background-color: #f7f6f2;
-    background-image:
-      radial-gradient(#e6e4dd 1px, transparent 1px),
-      radial-gradient(#e6e4dd 1px, transparent 1px);
-    background-size: 4px 4px;
-    background-position: 0 0, 2px 2px;
-  }
-
-  /* 市松模様 */
-  .bg-ichimatsu {
-    background-color: #f4f0e6;
-    background-image:
-      linear-gradient(45deg, #e8e4d9 25%, transparent 25%),
-      linear-gradient(-45deg, #e8e4d9 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #e8e4d9 75%),
-      linear-gradient(-45deg, transparent 75%, #e8e4d9 75%);
-    background-size: 20px 20px;
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  }
-
-  /* 青海波 */
-  .bg-seigaiha {
-    background-color: #f4f0e6;
-    background-image: radial-gradient(circle at 100% 150%, #f4f0e6 24%, #e8e4d9 25%, #e8e4d9 28%, #f4f0e6 29%, #f4f0e6 36%, #e8e4d9 36%, #e8e4d9 40%, transparent 40%, transparent),
-    radial-gradient(circle at 0 150%, #f4f0e6 24%, #e8e4d9 25%, #e8e4d9 28%, #f4f0e6 29%, #f4f0e6 36%, #e8e4d9 36%, #e8e4d9 40%, transparent 40%, transparent),
-    radial-gradient(circle at 50% 100%, #e8e4d9 10%, #f4f0e6 11%, #f4f0e6 23%, #e8e4d9 24%, #e8e4d9 30%, #f4f0e6 31%, #f4f0e6 43%, #e8e4d9 44%, #e8e4d9 50%, #f4f0e6 51%, #f4f0e6 63%, #e8e4d9 64%, #e8e4d9 71%, transparent 71%, transparent);
-    background-size: 50px 25px;
-    background-position: 0 0, 25px 0, 25px -25px, 0px -25px;
-  }
-
-  /* 装飾ライン */
+  /* 装飾要素 */
   .border-japanese {
-    border-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 L0,0 Z M10,10 L90,10 L90,90 L10,90 L10,10 Z' fill='%23786F66'/%3E%3C/svg%3E") 30;
-    border-width: 4px;
-    border-style: solid;
+    @apply border-2 border-stone-300 relative;
   }
 
-  /* 和風シャドウ */
-  .shadow-japanese {
-    box-shadow: 4px 4px 0 rgba(120, 111, 102, 0.1),
-                8px 8px 0 rgba(120, 111, 102, 0.05);
-  }
-
-  /* 和風ボタン */
-  .btn-japanese {
-    background-color: #786F66;
-    color: #f4f0e6;
-    padding: 0.5rem 2rem;
-    position: relative;
-    transition: all 0.3s ease;
-  }
-
-  .btn-japanese::before,
-  .btn-japanese::after {
+  .border-japanese::before,
+  .border-japanese::after {
     content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border: 2px solid #786F66;
-    transition: all 0.3s ease;
+    @apply absolute w-3 h-3 border-stone-300;
   }
 
-  .btn-japanese::before {
-    top: -4px;
-    left: -4px;
-    border-right: 0;
-    border-bottom: 0;
+  .shadow-japanese {
+    box-shadow:
+      4px 4px 0 rgba(120, 111, 102, 0.1),
+      8px 8px 0 rgba(120, 111, 102, 0.05);
   }
+}
 
-  .btn-japanese::after {
-    bottom: -4px;
-    right: -4px;
-    border-left: 0;
-    border-top: 0;
+/* アニメーションキーフレーム */
+@keyframes schlieren1 {
+  0%, 100% {
+    transform: translate(-10%, -10%) rotate(0deg);
+    opacity: 0;
   }
-
-  .btn-japanese:hover {
-    background-color: #f4f0e6;
-    color: #786F66;
+  25% {
+    opacity: 0.03;
   }
+  50% {
+    transform: translate(10%, 10%) rotate(180deg);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.03;
+  }
+}
 
-  .btn-japanese:hover::before,
-  .btn-japanese:hover::after {
-    width: 20px;
-    height: 20px;
+@keyframes schlieren2 {
+  0%, 100% {
+    transform: translate(10%, -10%) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.03;
+  }
+  50% {
+    transform: translate(-10%, 10%) rotate(-180deg);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.03;
+  }
+}
+
+@keyframes schlieren3 {
+  0%, 100% {
+    transform: translate(-5%, 5%) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.03;
+  }
+  50% {
+    transform: translate(5%, -5%) rotate(90deg);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.03;
+  }
+}
+
+/* アニメーション用ユーティリティ */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
