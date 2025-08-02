@@ -14,7 +14,7 @@ export const metadata = {
   description: '覗香（のぞか）は、香りを通じて新しい体験を創出するプロジェクトです。伝統的な香りの世界と現代技術を融合させ、五感に訴える新しい体験を提供します。',
   keywords: ['覗香', 'のぞか', '香り', '和', '日本', 'アート', 'デザイン', '五感', '体験', '伝統', 'テクノロジー'],
   authors: [
-    { name: '岡空来', url: '#' },
+    { name: '岡空来', url: 'https://sites.google.com/view/soraoka/' },
     { name: '金澤政宜', url: 'https://kanassi.info/' },
     { name: '中田裕紀', url: 'https://yuki-nakata.org/' },
     { name: '南田桂吾', url: 'https://keigominamida.com/' },
