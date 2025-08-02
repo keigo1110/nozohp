@@ -1,6 +1,6 @@
 export default function Concept() {
     return (
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-stone-50 relative">
+      <section id="concept" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-stone-50 relative">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <h2 className="mb-8 sm:mb-12 md:mb-16 text-2xl sm:text-3xl md:text-4xl font-medium text-center tracking-[0.25em]">
             作品の詞
